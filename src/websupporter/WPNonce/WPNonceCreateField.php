@@ -25,7 +25,7 @@ class WPNonceCreateField extends WPNonceCreate {
 	 * @param (boolean) $echo    Whether to echo the field immediatly or not.
 	 * @return (string) $field   The created field.
 	 **/
-	public function create_field( boolean $referer = null, boolean $echo = null ) {
+	public function create_field( bool $referer = null, bool $echo = null ) {
 		//Make sure, we have booleans
 		$referer = (bool) $referer;
 		$echo = (bool) $echo;
