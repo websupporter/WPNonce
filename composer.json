@@ -11,7 +11,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"websupporter/WPNonce\\": "src/websupporter/WPNonce"
+			"websupporter\\WPNonce\\": "src/websupporter/WPNonce"
 		}
 	}
 }
