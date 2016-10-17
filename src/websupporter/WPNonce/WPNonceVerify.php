@@ -36,7 +36,7 @@ class WPNonceVerify extends WPNonceAbstract {
 
 		$valid = wp_verify_nonce( $this->get_nonce(), $this->get_action() );
 
-		if ( $valid === false ) {
+		if ( false === $valid ) {
 			return false;
 		}
 		return true;
