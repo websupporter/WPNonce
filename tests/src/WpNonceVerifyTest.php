@@ -24,6 +24,15 @@ class WpNonceVerifyTest extends \PHPUnit_Framework_TestCase{
 			return sha1($action) === $nonce;
 		});
 
+		//we mock wp_unslash
+		Functions::expect('wp_unslash')->andReturnUsing(function ($string) {
+			return $string;
+		});
+		//we mock sanitize_text_field
+		Functions::expect('sanitize_text_field')->andReturnUsing(function ($string) {
+			return $string;
+		});
+
 		parent::setUp();
 		Monkey::setUpWP();
 

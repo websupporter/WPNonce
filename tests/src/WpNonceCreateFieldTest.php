@@ -30,6 +30,11 @@ class WpNonceCreateFieldTest extends \PHPUnit_Framework_TestCase{
 
 			return $string;
 		});
+		//we mock wp_kses
+		Functions::expect('wp_kses')->andReturnUsing(function ( $string, $array ) {
+
+			return $string;
+		});
 
 		parent::setUp();
 		Monkey::setUpWP();
