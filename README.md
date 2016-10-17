@@ -7,6 +7,11 @@ A objectoriented approach to use the WordPress Nonce System
 
 ## Get started
 
+### Requirements:
+* PHP 7
+* WordPress 2.0.3
+
+
 ### The configuration:
 ```
 $config = new WPNonceConfig( 
