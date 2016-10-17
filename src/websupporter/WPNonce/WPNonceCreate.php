@@ -1,15 +1,24 @@
 <?php
-namespace websupporter\WPNonce;
-
 /**
- * WPNonceConfigAbstract
+ * Create Nonces.
  *
  * @package websupporter-wpnonce
  * @license GPL2+
  */
 
+namespace websupporter\WPNonce;
+
+/**
+ * WPNonceCreate
+ **/
 class WPNonceCreate extends WPNonceAbstract {
-	
+
+	/**
+	 * Configures the settings
+	 *
+	 * @since 2.0.0
+	 * @param WPNonceConfig $config The configuration.
+	 **/
 	function __construct( WPNonceConfig $config ) {
 		$this->set_action( $config->get_action() );
 		$this->set_request_name( $config->get_request_name() );
@@ -18,6 +27,7 @@ class WPNonceCreate extends WPNonceAbstract {
 
 	/**
 	 * Verify a nonce
+	 *
 	 * @since 2.0.0
 	 *
 	 * @return (string) $nonce The created nonce
@@ -26,5 +36,4 @@ class WPNonceCreate extends WPNonceAbstract {
 		$this->set_nonce( wp_create_nonce( $this->get_action() ) );
 		return $this->get_nonce();
 	}
-
 }
