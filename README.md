@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/websupporter/WPNonce.svg?branch=master)](https://travis-ci.org/websupporter/WPNonce)
+[![Build Status](https://travis-ci.org/websupporter/WPNonce.svg?branch=master)](https://travis-ci.org/websupporter/WPNonce) [![codecov](https://codecov.io/gh/websupporter/WPNonce/branch/master/graph/badge.svg)](https://codecov.io/gh/websupporter/WPNonce)
 WPNonce
 ===================
 
