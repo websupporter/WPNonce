@@ -188,3 +188,17 @@ $noncedemo->run();
 
 
 ```
+
+### Demo composer.json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url" : "https://github.com/websupporter/wpnonce"
+        }
+    ],
+    "require": {
+        "websupporter/wpnonce" : "1.0.*"
+    }
+}
+```
