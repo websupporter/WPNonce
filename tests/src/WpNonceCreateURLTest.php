@@ -1,4 +1,9 @@
-<?php 
+<?php
+/**
+ * Test the WPNonceCreateURL class.
+ *
+ * @package Tests
+ **/
 
 use Brain\Monkey;
 use Brain\Monkey\Functions;
@@ -7,21 +12,55 @@ use Brain\Monkey\WP\Filters;
 use websupporter\WPNonce\WPNonceConfig;
 use websupporter\WPNonce\WPNonceCreateURL;
 
-class WpNonceCreateURLTest extends \PHPUnit_Framework_TestCase{
+/**
+ * Test class WpNonceCreateURLTest
+ **/
+class WpNonceCreateURLTest extends \PHPUnit_Framework_TestCase {
 
-	public $lifetime, $action,$request, $config;
+	/**
+	 * The lifetime.
+	 *
+	 * @var int
+	 **/
+	public $lifetime;
 
+	/**
+	 * The action.
+	 *
+	 * @var string
+	 **/
+	public $action;
+
+
+	/**
+	 * The request name.
+	 *
+	 * @var string
+	 **/
+	public $request;
+
+
+	/**
+	 * The configuration.
+	 *
+	 * @var WPNonceConfig
+	 **/
+	public $config;
+
+	/**
+	 * Set the test up.
+	 **/
 	public function setUp() {
 		if ( ! defined( 'DAY_IN_SECONDS' ) ) {
-			define ( 'DAY_IN_SECONDS', 86400 );
+			define( 'DAY_IN_SECONDS', 86400 );
 		}
-		//we mock wp_create_nonce with sha1()
-		Functions::when('wp_create_nonce')->alias('sha1');
+		// We mock wp_create_nonce with sha1().
+		Functions::when( 'wp_create_nonce' )->alias( 'sha1' );
 
-		//we mock wp_nonce_url
-		Functions::expect('wp_nonce_url')->andReturnUsing(function ($url, $action, $request_name) {
+		// We mock wp_nonce_url.
+		Functions::expect( 'wp_nonce_url' )->andReturnUsing( function ( $url, $action, $request_name ) {
 			return $url . $action . $request_name;
-		});
+		} );
 
 		parent::setUp();
 		Monkey::setUpWP();
@@ -39,7 +78,7 @@ class WpNonceCreateURLTest extends \PHPUnit_Framework_TestCase{
 		$create = new WPNonceCreateURL( $this->config );
 		$url = 'http://example.com/';
 		$url_with_nonce = $create->create_url( $url );
-	
+
 		self::assertSame( $url_with_nonce, $url . $this->action . $this->request );
 
 		self::assertSame( $url_with_nonce, $create->get_url() );
@@ -47,7 +86,9 @@ class WpNonceCreateURLTest extends \PHPUnit_Framework_TestCase{
 	}
 
 
-
+	/**
+	 * Tear down the test.
+	 **/
 	public function tearDown() {
 		Monkey::tearDownWP();
 		parent::tearDown();
