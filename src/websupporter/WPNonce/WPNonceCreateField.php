@@ -52,7 +52,17 @@ class WPNonceCreateField extends WPNonceCreate {
 		$this->set_field( $field );
 
 		if ( true === $echo ) {
-			echo wp_kses( $this->get_field(), array( 'input' => array( 'type', 'id', 'name', 'value' ) ) );
+			echo wp_kses(
+				$this->get_field(),
+				array(
+					'input' => array(
+						'type'  => array(),
+						'id'    => array(),
+						'name'  => array(),
+						'value' => array(),
+					),
+				)
+			);
 		}
 
 		return $this->get_field();
