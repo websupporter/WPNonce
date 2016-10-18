@@ -16,7 +16,7 @@ class WPNonceCreate extends WPNonceAbstract {
 	/**
 	 * Configures the settings
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 * @param WPNonceConfig $config The configuration.
 	 **/
 	function __construct( WPNonceConfig $config ) {
@@ -28,7 +28,7 @@ class WPNonceCreate extends WPNonceAbstract {
 	/**
 	 * Verify a nonce
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @return (string) $nonce The created nonce
 	 **/

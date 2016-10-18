@@ -47,7 +47,7 @@ abstract class WPNonceAbstract implements WPNonceInterface {
 	/**
 	 * Set the action
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param string $new_action The new action name.
 	 * @return string $action     The action.
@@ -60,7 +60,7 @@ abstract class WPNonceAbstract implements WPNonceInterface {
 	/**
 	 * Get the action
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @return string $action The action.
 	 **/
@@ -71,7 +71,7 @@ abstract class WPNonceAbstract implements WPNonceInterface {
 	/**
 	 * Set the request name
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param string $new_request_name The new request name.
 	 * @return string $request_name    The request name.
@@ -84,7 +84,7 @@ abstract class WPNonceAbstract implements WPNonceInterface {
 	/**
 	 * Get the request name
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @return string $request_name The request name.
 	 **/
@@ -95,7 +95,7 @@ abstract class WPNonceAbstract implements WPNonceInterface {
 	/**
 	 * Set the lifetime
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param int $new_lifetime The new lifetime.
 	 * @return int $lifetime    The current lifetime.
@@ -108,7 +108,7 @@ abstract class WPNonceAbstract implements WPNonceInterface {
 	/**
 	 * Get the lifetime
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param boolean $actual_lifetime Whether to use the lifetime used by WordPress or the lifetime stored in $lifetime. Optional. Default: true.
 	 * @return int $lifetime       The lifetime.
@@ -126,7 +126,7 @@ abstract class WPNonceAbstract implements WPNonceInterface {
 	/**
 	 * Set the nonce
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param string $new_nonce The nonce to verify.
 	 * @return string $nonce    The nonce
@@ -139,7 +139,7 @@ abstract class WPNonceAbstract implements WPNonceInterface {
 	/**
 	 * Get the nonce
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @return (string) $nonce The nonce
 	 **/

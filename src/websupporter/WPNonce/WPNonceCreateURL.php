@@ -34,7 +34,7 @@ class WPNonceCreateURL extends WPNonceCreate {
 	/**
 	 * Verify a nonce
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param string $url The URL to append the Nonce.
 	 * @return string $nonce The created nonce
@@ -51,7 +51,7 @@ class WPNonceCreateURL extends WPNonceCreate {
 	/**
 	 * Set the URL
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param string $new_url The new URL.
 	 * @return string $nonce  The URL
@@ -64,7 +64,7 @@ class WPNonceCreateURL extends WPNonceCreate {
 	/**
 	 * Get the URL
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @return string $url The URL
 	 **/

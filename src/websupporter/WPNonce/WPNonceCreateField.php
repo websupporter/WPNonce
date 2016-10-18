@@ -34,7 +34,7 @@ class WPNonceCreateField extends WPNonceCreate {
 	/**
 	 * Verify a nonce
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param boolean $referer Whether to add a referer field or not.
 	 * @param boolean $echo    Whether to echo the field immediatly or not.
@@ -71,7 +71,7 @@ class WPNonceCreateField extends WPNonceCreate {
 	/**
 	 * Set the URL
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param  string $new_field   The new field.
 	 * @return string $field       The field
@@ -84,7 +84,7 @@ class WPNonceCreateField extends WPNonceCreate {
 	/**
 	 * Get the URL
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @return string $url The URL
 	 **/

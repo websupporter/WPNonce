@@ -33,7 +33,7 @@ class WPNonceVerify extends WPNonceAbstract {
 	/**
 	 * Verify a nonce.
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param string $nonce   The nonce to verify (optional).
 	 * @return boolean $valid Whether the nonce is valid or not.
@@ -54,7 +54,7 @@ class WPNonceVerify extends WPNonceAbstract {
 	/**
 	 * Get the age of a nonce
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @return string $age Whether the nonce is "young" (1), "old" (2) or invalid (false).
 	 *                     "young" usually means 0 - 12 hours

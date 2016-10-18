@@ -21,7 +21,7 @@ interface WPNonceInterface {
 	/**
 	 * Set a new action
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param  string $new_action The new action.
 	 * @return string $action    The action
@@ -31,7 +31,7 @@ interface WPNonceInterface {
 	/**
 	 * Get the action
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @return string $action The action
 	 **/
@@ -41,7 +41,7 @@ interface WPNonceInterface {
 	/**
 	 * Set a new request name
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param  string $new_request_name The new request name for $_REQUEST.
 	 * @return string $request         The request
@@ -52,7 +52,7 @@ interface WPNonceInterface {
 	/**
 	 * Get the request name
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @return string $request The request name
 	 **/
@@ -62,7 +62,7 @@ interface WPNonceInterface {
 	/**
 	 * Set a new lifetime
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param  int $new_lifetime The new lifetime.
 	 * @return int $lifetime     The lifetime
@@ -73,7 +73,7 @@ interface WPNonceInterface {
 	/**
 	 * Get the lifetime
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param  boolean $actual_lifetime Whether to run the 'nonce_life' filter or not. Optional. Default is true.
 	 * @return int     $lifetime     The lifetime
@@ -83,7 +83,7 @@ interface WPNonceInterface {
 	/**
 	 * Set the nonce
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param  string $new_nonce The nonce to verify.
 	 * @return string $nonce     The nonce
@@ -93,7 +93,7 @@ interface WPNonceInterface {
 	/**
 	 * Get the nonce
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @return (string) $nonce The nonce
 	 **/

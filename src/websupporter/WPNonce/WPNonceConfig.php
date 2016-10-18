@@ -16,7 +16,7 @@ class WPNonceConfig extends WPNonceAbstract {
 	/**
 	 * Configuration
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param string $new_action       The new action.
 	 * @param string $new_request_name The new request name.
@@ -38,7 +38,7 @@ class WPNonceConfig extends WPNonceAbstract {
 	/**
 	 * Hooks into the nonce_life filter if necessary.
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param  (integer) $old_lifetime The old lifetime.
 	 * @return (integer) $lifetime     The lifetime.
