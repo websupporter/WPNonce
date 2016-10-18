@@ -186,10 +186,11 @@ class WPNonceDemo {
 $noncedemo = new WPNonceDemo();
 $noncedemo->run();
 
-
 ```
 
 ### Demo composer.json
+
+```
 {
     "repositories": [
         {
