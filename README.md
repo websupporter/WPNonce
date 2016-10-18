@@ -67,97 +67,124 @@ This will check if the nonce, you have passed is valid for the current configura
 ```
 <?php
 /**
- * WPNonceCreateField
- * The class to create a nonce field.
+ * Plugin Name: WPNonce Demo
+ * Description: Utilize the WPNonce library in a small demo.
+ * Author: David Remer
+ * License: GPL2+
  *
- * @package websupporter-wpnonce
- * @subpackage WPNonceCreate
- * @license GPL2+
- */
+ * @package Plugins
+ **/
 
-namespace websupporter\WPNonce;
+declare(strict_types = 1);
+use websupporter\WPNonce\WPNonceConfig;
+use websupporter\WPNonce\WPNonceCreateURL;
+use websupporter\WPNonce\WPNonceCreateField;
+use websupporter\WPNonce\WPNonceVerify;
+require_once( __DIR__ . '/vendor/autoload.php' );
 
 /**
- * WPNonceCreateField
+ * WPNonceDemo
+ * The demonstration class
  **/
-class WPNonceCreateField extends WPNonceCreate {
+class WPNonceDemo {
 
 	/**
-	 * The field
+	 * The post ID to be protected by a post
 	 *
-	 * @var string
+	 * @var int
 	 **/
-	private $field = '';
+	private $post_id = 726;
 
 	/**
-	 * Configure the class.
+	 * The nonce configuration
 	 *
-	 * @param WPNonceConfig $config The configuration instance.
+	 * @var WPNonceConfig
 	 **/
-	function __construct( WPNonceConfig $config ) {
-		parent::__construct( $config );
+	private $nonceconfig;
+
+	/**
+	 * Starts the demo
+	 **/
+	function run() {
+
+		// Configure the Nonce.
+		$this->nonceconfig = new WPNonceConfig(
+			'display-the-post-' . $this->post_id,  // The action.
+			'_wpnonce_test',                       // The request name.
+			60                                     // The lifetime.
+		);
+
+		add_action( 'template_redirect', array( $this, 'validate' ) );
+		add_filter( 'document_title_parts', array( $this, 'validate_doc_title' ) );
 	}
 
 	/**
-	 * Verify a nonce
+	 * Hooks into the document_title to overwrite it, in case no valid nonce is given.
 	 *
-	 * @since 2.0.0
-	 *
-	 * @param boolean $referer Whether to add a referer field or not.
-	 * @param boolean $echo    Whether to echo the field immediatly or not.
-	 * @return string $field   The created field.
+	 * @param  array $title The title parts.
+	 * @return array $title
 	 **/
-	public function create_field( bool $referer = null, bool $echo = null ) {
-		// Make sure, we have booleans.
-		$referer = (bool) $referer;
-		$echo = (bool) $echo;
-
-		// Let's create a nonce to populate $nonce.
-		$this->create();
-
-		$field = wp_nonce_field( $this->get_action(), $this->get_request_name(), $referer, false );
-		$this->set_field( $field );
-
-		if ( true === $echo ) {
-			echo wp_kses(
-				$this->get_field(),
-				array(
-					'input' => array(
-						'type'  => array(),
-						'id'    => array(),
-						'name'  => array(),
-						'value' => array(),
-					),
-				)
-			);
+	function validate_doc_title( $title ) {
+		$validate = new WPNonceVerify( $this->nonceconfig );
+		if ( ! is_single( $this->post_id ) || $validate->verify() ) {
+			return $title;
 		}
 
-		return $this->get_field();
+		return array( __( 'Please use a valid nonce', 'wpnonce-test' ) );
 	}
+	/**
+	 * Check if the correct nonce was send, when we try to read the nonce protected post.
+	 **/
+	function validate() {
+
+		// Bail out if its not our protected Post.
+		if ( ! is_single( $this->post_id ) ) {
+			return;
+		}
+
+		// Display the nonces form, if no nonce was omitted.
+		// It's not about security, it's about demonstration :).
+		$validate = new WPNonceVerify( $this->nonceconfig );
+		if ( ! $validate->verify() ) {
+			$this->display_form();
+			exit;
+		}
+
+	}
+
 
 	/**
-	 * Set the URL
-	 *
-	 * @since 2.0.0
-	 *
-	 * @param  string $new_field   The new field.
-	 * @return string $field       The field
+	 * Display the form with nonces and a URL with nonces.
 	 **/
-	public function set_field( string $new_field ) {
-		$this->field = $new_field;
-		return $this->get_field();
-	}
+	function display_form() {
+		get_header();
 
-	/**
-	 * Get the URL
-	 *
-	 * @since 2.0.0
-	 *
-	 * @return string $url The URL
-	 **/
-	public function get_field() {
-		return $this->field;
-	}
+		$field = new WPNonceCreateField( $this->nonceconfig );
+		?>
+		<h1><?php esc_html_e( 'You may enter with the correct nonce.', 'wpnonce-test' ); ?></h1>
+		<p>
+			<?php esc_html_e( 'This form has a hidden field with the correct nonce. The nonces lifetime is 60 seconds, so hurry up :)' ,'wpnonce-test' ); ?>
+		</p>
+		<form method="post" action="<?php echo esc_url( get_permalink( $this->post_id ) ); ?>">
+			<?php $field->create_field( false, true ); ?>
+			<button><?php esc_html_e( 'Send', 'wpnonce-test' ); ?></button>
+		</form>
+		<?php
+		$url = new WPNonceCreateURL( $this->nonceconfig );
+		?>
+		<hr />
+		<p>
+			<?php esc_html_e( 'You can also use the following link:' ,'wpnonce-test' ); ?>
+			<a href="<?php echo esc_url( $url->create_url( get_permalink( $this->post_id ) ) ); ?>"><?php esc_html_e( 'Send nonce by URL', 'wpnonce-test' ); ?></a>
+		</p>
+		<?php
 
+		get_footer();
+	}
 }
+
+$noncedemo = new WPNonceDemo();
+$noncedemo->run();
+
+
 ```
